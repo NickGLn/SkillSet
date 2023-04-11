@@ -18,7 +18,6 @@ builder.Services.AddDbContextFactory<PersonSkillsContext>(
     options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("PersonSkillsDatabase")),
         ServiceLifetime.Scoped);
-        //builder => builder.MigrationsAssembly(typeof(PersonSkillsContext).Assembly.FullName)));
 
 var app = builder.Build();
 

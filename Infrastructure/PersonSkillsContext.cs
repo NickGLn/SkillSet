@@ -10,7 +10,7 @@ using MediatR;
 
 namespace SkillSet.Infrastructure;
 
-public class PersonSkillsContext : DbContext, IPersonSkillsContext
+public class PersonSkillsContext : DbContext
 {
     private readonly IMediator _mediator;
 

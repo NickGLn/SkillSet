@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SkillSet.Application.Commands;
 using SkillSet.Application.Models;
 using SkillSet.Domain;
 
@@ -10,6 +11,7 @@ namespace SkillSet.Application.Mappings
         {
             CreateMap<Person, PersonDto>().ReverseMap();
             CreateMap<Skill, SkillDto>().ReverseMap();
+            CreateMap<CreatePersonCommand, Person>();
         }
     }
 }

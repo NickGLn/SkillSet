@@ -15,6 +15,10 @@ namespace SkillSet.Controllers
 
         public PersonController(ISender mediator) => _mediator = mediator;
 
+        /// <summary>
+        /// Get list of all people and their skills
+        /// </summary>
+        /// <returns>Collection of people</returns>
         [HttpGet]
         [Route("people")]
         public async Task<ActionResult> GetPeople()
@@ -24,6 +28,11 @@ namespace SkillSet.Controllers
             return Ok(people);
         }
 
+        /// <summary>
+        /// Get person
+        /// </summary>
+        /// <param name="id"> Person's ID </param>
+        /// <returns>Person's data with specified ID</returns>
         [HttpGet]
         [Route("person/{id}")]
         public async Task<ActionResult> GetPerson([FromRoute] long id)
@@ -34,6 +43,11 @@ namespace SkillSet.Controllers
             return Ok(person);
         }
 
+        /// <summary>
+        /// Create a new person
+        /// </summary>
+        /// <param name="newPerson">Payload with Person's data</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("person")]
         public async Task<ActionResult> CreatePerson([FromBody] CreatePersonCommand newPerson)
@@ -41,6 +55,11 @@ namespace SkillSet.Controllers
             return Ok(await _mediator.Send(newPerson));
         }
 
+        /// <summary>
+        /// Modify an existing person
+        /// </summary>
+        /// <param name="person">Payload with Person's data</param>
+        /// <returns></returns>
         [HttpPut]
         [Route("person")]
         public async Task<ActionResult> UpdatePerson([FromBody] UpdatePersonCommand person)
@@ -48,6 +67,11 @@ namespace SkillSet.Controllers
             return Ok(await _mediator.Send(person));
         }
 
+        /// <summary>
+        /// Delete person from system
+        /// </summary>
+        /// <param name="id"> Person's ID </param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("person/{id}")]
         public async Task<ActionResult> DeletePerson([FromRoute] long id)

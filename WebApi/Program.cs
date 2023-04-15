@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SkillSet.Application.Commands;
 using SkillSet.Application.Mappings;
 using SkillSet.Infrastructure;
 
@@ -15,7 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 // Add MediatR
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreatePersonCommand).Assembly));
 
 // Register DbContext
 builder.Services.AddDbContextFactory<PersonSkillsContext>(

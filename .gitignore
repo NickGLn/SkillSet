@@ -14,6 +14,8 @@
 *.xls
 *.xlsx
 *.drawio
+*.txt
+*.sql
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

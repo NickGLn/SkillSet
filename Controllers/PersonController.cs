@@ -47,5 +47,14 @@ namespace SkillSet.Controllers
         {
             return Ok(await _mediator.Send(person));
         }
+
+        [HttpDelete]
+        [Route("person/{id}")]
+        public async Task<ActionResult> DeletePerson([FromRoute] long id)
+        {
+            var query = new DeletePersonCommand(id);
+
+            return Ok(await _mediator.Send(query));
+        }
     }
 }

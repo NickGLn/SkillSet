@@ -24,4 +24,5 @@ public class PersonSkillsContext : DbContext
     public DbSet<Person> People { get; set; }
     public DbSet<Skill> Skills { get; set; }
     public DbSet<SkillHistory> SkillsHistory { get; set; }
+
 }

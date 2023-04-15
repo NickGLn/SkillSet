@@ -6,7 +6,7 @@ namespace SkillSet.Domain
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public string DisplayName { get; set; }
-        public List<Skill> Skills { get; set; }
+        public string? DisplayName { get; set; }
+        public IEnumerable<Skill>? Skills { get; set; }
     }
 }

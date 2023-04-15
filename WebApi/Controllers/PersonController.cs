@@ -61,9 +61,17 @@ namespace SkillSet.Controllers
         /// <param name="person">Payload with Person's data</param>
         /// <returns></returns>
         [HttpPut]
-        [Route("person")]
-        public async Task<ActionResult> UpdatePerson([FromBody] UpdatePersonCommand person)
+        [Route("person/{id}")]
+        public async Task<ActionResult> UpdatePerson([FromRoute] long id, [FromBody] UpdatePersonDto body)
         {
+            var person = new UpdatePersonCommand
+            {
+                Id = id,
+                Name = body.Name,
+                DisplayName = body.DisplayName,
+                Skills = body.Skills
+            };
+
             return Ok(await _mediator.Send(person));
         }
 

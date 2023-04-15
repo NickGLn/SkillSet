@@ -13,7 +13,7 @@ namespace SkillSet.Application.Commands
         public long Id { get; set; }
         public string Name { get; set; }
         public string DisplayName { get; set; }
-        public IEnumerable<SkillDto> Skills { get; set; }
+        public IEnumerable<UpdateSkillDto> Skills { get; set; }
     }
 
     public class UpdatePersonCommandHandler : IRequestHandler<UpdatePersonCommand, long>

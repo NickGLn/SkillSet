@@ -41,7 +41,39 @@ namespace SkillSet.Application.Commands
 
             person.Name = request.Name;
             person.DisplayName = request.DisplayName;
-            person.Skills = request.Skills.Select( s => _mapper.Map<Skill>(s)).ToList();
+            //person.Skills = request.Skills.Select( s => _mapper.Map<Skill>(s)).ToList();
+
+            // Incoming skill ID's
+            var skillIds = request.Skills.Select(s => s.Id);
+
+            // Skills to Delete
+            var deleteSkills = context.Skills.Where(s => !skillIds.Contains(s.Id) && s.Person.Id == request.Id);
+
+            if (deleteSkills.Any())
+            {
+                context.RemoveRange(deleteSkills);
+            }
+
+            // Skill to update or insert
+            foreach (var requestSkill in request.Skills)
+            {
+                var skill = person.Skills.Where(s => s.Id == requestSkill.Id).FirstOrDefault();
+
+                // Update if a skill already exists
+                if (skill != null)
+                {
+                    skill.Name = requestSkill.Name;
+                    skill.Level = requestSkill.Level;
+                }
+                // Insert if it's a new skill
+                else
+                {
+                    var addSkill = _mapper.Map<Skill>(requestSkill);
+                    addSkill.PersonId = person.Id;
+
+                    await context.AddAsync(addSkill);
+                }
+            }
 
             await context.SaveChangesAsync(cancellationToken);
 

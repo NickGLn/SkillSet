@@ -8,11 +8,10 @@ namespace SkillSet.Infrastructure;
 public class PersonSkillsContext : DbContext
 {
     private readonly IMediator _mediator;
-
     public PersonSkillsContext(
         DbContextOptions<PersonSkillsContext> options,
         IMediator mediator)
-        :base(options)
+        : base(options)
     {
         _mediator = mediator;
     }
@@ -26,5 +25,4 @@ public class PersonSkillsContext : DbContext
 
         base.OnModelCreating(builder);
     }
-
 }

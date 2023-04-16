@@ -11,7 +11,9 @@ namespace SkillSet.Application.Mappings
         {
             CreateMap<Person, PersonDto>().ReverseMap();
             CreateMap<Skill, SkillDto>().ReverseMap();
-            CreateMap<CreatePersonCommand, Person>();
+            CreateMap<UpdateSkillDto, Skill>();
+            CreateMap<CreatePersonCommand, Person>(); 
+            CreateMap<UpdatePersonCommand, Person>();
         }
     }
 }

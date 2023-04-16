@@ -25,5 +25,4 @@ public class PersonSkillsContext : DbContext
 
         base.OnModelCreating(builder);
     }
-
 }

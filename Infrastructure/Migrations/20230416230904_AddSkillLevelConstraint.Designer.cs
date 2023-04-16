@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkillSet.Infrastructure;
 
@@ -11,9 +12,11 @@ using SkillSet.Infrastructure;
 namespace SkillSet.Migrations
 {
     [DbContext(typeof(PersonSkillsContext))]
-    partial class PersonSkillsContextModelSnapshot : ModelSnapshot
+    [Migration("20230416230904_AddSkillLevelConstraint")]
+    partial class AddSkillLevelConstraint
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

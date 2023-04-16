@@ -14,7 +14,10 @@ public class SkillConfiguration : IEntityTypeConfiguration<Skill>
             .HasMaxLength(100)
             .IsRequired();
 
-        builder.Property(x => x.Level);
-            
+        builder.Property(s => s.Level)
+            .IsRequired();
+
+        builder.ToTable(t => t.HasCheckConstraint("[Level]", "[Level] > 0 AND [Level] <= 10").HasName("CK_Skill_Level"));
+
     }
 }

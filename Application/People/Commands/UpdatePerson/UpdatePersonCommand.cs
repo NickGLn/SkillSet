@@ -1,12 +1,12 @@
-﻿using AutoMapper;
+﻿using Application.Common.Models;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SkillSet.Application.Models;
 using SkillSet.Domain;
 using SkillSet.Infrastructure;
 
-namespace SkillSet.Application.Commands
+namespace Application.People.Commands.UpdatePerson
 {
     public class UpdatePersonCommand : IRequest<long>
     {
@@ -41,7 +41,7 @@ namespace SkillSet.Application.Commands
 
             person.Name = request.Name;
             person.DisplayName = request.DisplayName;
-            person.Skills = request.Skills.Select( s => _mapper.Map<Skill>(s)).ToList();
+            person.Skills = request.Skills.Select(s => _mapper.Map<Skill>(s)).ToList();
 
             await context.SaveChangesAsync(cancellationToken);
 

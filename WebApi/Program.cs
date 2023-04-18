@@ -1,6 +1,6 @@
+using Application.Common.Mappings;
+using Application.People.Commands.CreatePerson;
 using Microsoft.EntityFrameworkCore;
-using SkillSet.Application.Commands;
-using SkillSet.Application.Mappings;
 using SkillSet.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add AutoMapper
-builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(typeof(SkillMappingProfile));
 
 // Add MediatR
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreatePersonCommand).Assembly));

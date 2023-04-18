@@ -1,4 +1,4 @@
-﻿namespace SkillSet.Application.Models
+﻿namespace Application.People.Commands.UpdatePerson
 {
     public class UpdateSkillDto
     {

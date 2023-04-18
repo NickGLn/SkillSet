@@ -1,4 +1,6 @@
-﻿namespace SkillSet.Application.Models
+﻿using SkillSet.Application.Models;
+
+namespace Application.Common.Models
 {
     public class PersonDto
     {

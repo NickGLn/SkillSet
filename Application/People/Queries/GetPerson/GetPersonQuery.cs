@@ -1,11 +1,11 @@
-﻿using AutoMapper;
+﻿using Application.Common.Models;
+using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
-using SkillSet.Application.Models;
 using SkillSet.Infrastructure;
 
-namespace SkillSet.Application.Queries
+namespace Application.People.Queries.GetPerson
 {
     public class GetPersonQuery : IRequest<PersonDto>
     {
@@ -14,7 +14,7 @@ namespace SkillSet.Application.Queries
         {
             this.Id = Id;
         }
-        
+
     }
 
     internal class GetPersonQueryHandler : IRequestHandler<GetPersonQuery, PersonDto>
@@ -31,7 +31,7 @@ namespace SkillSet.Application.Queries
         public async Task<PersonDto> Handle(GetPersonQuery request, CancellationToken cancellationToken)
         {
             using var context = _contextFactory.CreateDbContext();
-            var person = await context.People.Where(x=>x.Id == request.Id)
+            var person = await context.People.Where(x => x.Id == request.Id)
                                              .Include(s => s.Skills)
                                              .FirstOrDefaultAsync();
 

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using SkillSet.Domain;
 using SkillSet.Infrastructure;
 
-namespace SkillSet.Application.Commands
+namespace Application.People.Commands.DeletePerson
 {
-    public class DeletePersonCommand: IRequest<long>
+    public class DeletePersonCommand : IRequest<long>
     {
         public long Id;
 

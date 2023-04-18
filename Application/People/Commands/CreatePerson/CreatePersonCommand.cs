@@ -1,11 +1,11 @@
-﻿using AutoMapper;
+﻿using Application.Common.Models;
+using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SkillSet.Application.Models;
 using SkillSet.Domain;
 using SkillSet.Infrastructure;
 
-namespace SkillSet.Application.Commands
+namespace Application.People.Commands.CreatePerson
 {
     public class CreatePersonCommand : IRequest<long>
     {

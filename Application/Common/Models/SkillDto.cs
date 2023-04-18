@@ -1,4 +1,4 @@
-﻿namespace SkillSet.Application.Models
+﻿namespace Application.Common.Models
 {
     public class SkillDto
     {

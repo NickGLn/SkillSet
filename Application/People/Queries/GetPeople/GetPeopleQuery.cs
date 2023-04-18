@@ -6,7 +6,7 @@ using SkillSet.Application.Models;
 using SkillSet.Domain;
 using SkillSet.Infrastructure;
 
-namespace SkillSet.Application.Queries
+namespace Application.People.Queries.GetPeople
 {
     public class GetPeopleQuery : IRequest<IEnumerable<PersonDto>> { }
 

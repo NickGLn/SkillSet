@@ -1,10 +1,10 @@
 using Application.People.Commands.CreatePerson;
+using Application.People.Commands.DeletePerson;
 using Application.People.Commands.UpdatePerson;
+using Application.People.Queries.GetPeople;
+using Application.People.Queries.GetPerson;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SkillSet.Application;
-using SkillSet.Application.Commands;
-using SkillSet.Application.Queries;
 
 namespace SkillSet.Controllers
 {

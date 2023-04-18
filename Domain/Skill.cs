@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SkillSet.Domain
+﻿namespace SkillSet.Domain
 {
     public class Skill
     {

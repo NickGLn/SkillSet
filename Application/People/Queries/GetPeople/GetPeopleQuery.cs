@@ -1,8 +1,8 @@
-﻿using AutoMapper;
+﻿using Application.Common.Models;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SkillSet.Application.Models;
 using SkillSet.Domain;
 using SkillSet.Infrastructure;
 

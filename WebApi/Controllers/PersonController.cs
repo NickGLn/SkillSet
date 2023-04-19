@@ -63,15 +63,9 @@ namespace SkillSet.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("person/{id}")]
-        public async Task<ActionResult> UpdatePerson([FromRoute] long id, [FromBody] UpdatePersonDto body)
+        public async Task<ActionResult> UpdatePerson([FromRoute] long Id, [FromBody] UpdatePersonCommand person)
         {
-            var person = new UpdatePersonCommand
-            {
-                Id = id,
-                Name = body.Name,
-                DisplayName = body.DisplayName,
-                Skills = body.Skills
-            };
+            person.Id = Id;
 
             return Ok(await _mediator.Send(person));
         }

@@ -7,13 +7,12 @@ namespace Application.People.Commands.CreatePerson
         public CreatePersonCommandValidator()
         {
             RuleFor(person => person.Name)
-                .MaximumLength(200)
-                .NotEmpty();
+                .NotEmpty()
+                .WithMessage("Please specify a value for the Name field");
 
             RuleFor(person => person.DisplayName)
-                .MaximumLength(200)
                 .NotEmpty()
-                .WithName("Display Name");
+                .WithMessage("Please specify a value for the DisplayName field");
         }
     }
 }

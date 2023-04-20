@@ -6,13 +6,17 @@ namespace Application.People.Commands.CreatePerson
     {
         public CreatePersonCommandValidator()
         {
-            RuleFor(person => person.Name)
-                .NotEmpty()
-                .WithMessage("Please specify a value for the Name field");
+            RuleForEach(person => person.Skills).ChildRules(s =>
+            {
+                s.RuleFor(skill => skill.Name)
+                    .NotEmpty()
+                    .WithMessage("Skill should have a name");
 
-            RuleFor(person => person.DisplayName)
-                .NotEmpty()
-                .WithMessage("Please specify a value for the DisplayName field");
+                s.RuleFor(skill => skill.Level)
+                    .NotEmpty()
+                    .Must(value => value > 0 && value <= 10)
+                    .WithMessage("Skill Level should be between 1 and 10");
+            });
         }
     }
 }

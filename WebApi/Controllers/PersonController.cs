@@ -59,15 +59,22 @@ namespace SkillSet.Controllers
         /// <summary>
         /// Modify an existing person
         /// </summary>
+        /// <param name="Id"> Person's ID </param>
         /// <param name="person">Payload with Person's data</param>
         /// <returns></returns>
         [HttpPut]
         [Route("person/{id}")]
-        public async Task<ActionResult> UpdatePerson([FromRoute] long Id, [FromBody] UpdatePersonCommand person)
+        public async Task<ActionResult> UpdatePerson([FromRoute] long id, [FromBody] UpdatePersonDto person)
         {
-            person.Id = Id;
+            var command = new UpdatePersonCommand
+            {
+                Id = id,
+                Name = person.Name,
+                DisplayName = person.DisplayName,
+                Skills = person.Skills
+            };
 
-            return Ok(await _mediator.Send(person));
+            return Ok(await _mediator.Send(command));
         }
 
         /// <summary>

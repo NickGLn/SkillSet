@@ -1,9 +1,11 @@
 ﻿using FluentValidation.Results;
+using System.Net;
 
 namespace Application.Common.Exceptions;
 
 public class ApiValidationException : Exception
 {
+    public HttpStatusCode HttpStatusCode { get; set; }
     public IDictionary<string, string[]> Errors { get; }
 
     public ApiValidationException()
@@ -15,6 +17,8 @@ public class ApiValidationException : Exception
     public ApiValidationException(IEnumerable<ValidationFailure> failures)
         : this()
     {
+        HttpStatusCode = HttpStatusCode.BadRequest;
+
         Errors = failures
             .GroupBy(e => e.PropertyName, e => e.ErrorMessage)
             .ToDictionary(failureGroup => failureGroup.Key, failureGroup => failureGroup.ToArray());

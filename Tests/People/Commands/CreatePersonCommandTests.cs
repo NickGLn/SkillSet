@@ -5,28 +5,20 @@ using SkillSet.Infrastructure;
 using Moq;
 using AutoMapper;
 using Application.Common.Mappings;
+using Xunit.Microsoft.DependencyInjection.ExampleTests.Fixtures;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Tests.People.Commands;
-public class CreatePersonCommandTests
+public class CreatePersonCommandTests 
+      : IClassFixture<CustomWebApplicationFactory<Program>>
 {
-    private static IMapper _mapper = new MapperConfiguration(cfg =>
-    {
-        cfg.AddProfile(new PersonMappingProfile());
-        cfg.AddProfile(new SkillMappingProfile());
-    }).CreateMapper();
-
-    private static DbContextOptions<PersonSkillsContext> _dbContextOptions = new DbContextOptionsBuilder<PersonSkillsContext>()
-        .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
-        .Options;
-
     private readonly IDbContextFactory<PersonSkillsContext> _dbContextFactory;
+    private readonly IMapper _mapper;
 
-    public CreatePersonCommandTests()
+    public CreatePersonCommandTests( CustomWebApplicationFactory<Program> factory)
     {
-        var dbContextFactoryMock = new Mock<IDbContextFactory<PersonSkillsContext>>();
-        dbContextFactoryMock.Setup(f => f.CreateDbContext()).Returns(new PersonSkillsContext(_dbContextOptions));
-
-        _dbContextFactory = dbContextFactoryMock.Object;
+        _dbContextFactory = factory.Services.GetRequiredService<IDbContextFactory<PersonSkillsContext>>();
+        _mapper = factory.Services.GetRequiredService<IMapper>();
     }
 
     [Fact]
@@ -52,12 +44,13 @@ public class CreatePersonCommandTests
             Skills = new[] { newSkillOne, newSkillTwo }
         };
 
+        
         var handler = new CreatePersonCommandHandler(_dbContextFactory, _mapper);
 
         //Act
         var newPersonId = await handler.Handle(newPersonCommand, new CancellationToken());
 
-        using var context = new PersonSkillsContext(_dbContextOptions);
+        using var context = _dbContextFactory.CreateDbContext();
         var newPerson = context.People.Include(p => p.Skills).Where(p => p.Id ==newPersonId).FirstOrDefault();
 
 

@@ -28,7 +28,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-	<InternalsVisibleTo Include="..\Tests\Tests.csproj" />
+	  <InternalsVisibleTo Include="..\Application.UnitTests\Application.UnitTests.csproj" />
+	  <InternalsVisibleTo Include="..\Application.IntegrationTests\Application.IntegrationTests.csproj" />
   </ItemGroup>
 
   <ItemGroup>

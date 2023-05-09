@@ -11,17 +11,28 @@ namespace Application.People.Commands.UpdatePerson
     {
         public UpdatePersonCommandValidator() 
         {
-            RuleFor(person => person.Name).NotEmpty().WithMessage("Person Name shouldn't be empty");
-            RuleFor(person => person.DisplayName).NotEmpty().WithMessage("Person DisplayName shouldn't be empty");
+            RuleFor(person => person.Id)
+                .NotNull();
+
+            RuleFor(person => person.Name)
+                .NotNull()
+                .NotEmpty()
+                .MaximumLength(100);
+
+            RuleFor(person => person.DisplayName)
+                .NotNull()
+                .NotEmpty()
+                .MaximumLength(100);
 
             RuleForEach(person => person.Skills).ChildRules(s =>
             {
                 s.RuleFor(skill => skill.Name)
-                    .NotEmpty()
-                    .WithMessage("Skill should have a name");
+                    .NotNull()
+                    .NotEmpty();
 
                 s.RuleFor(skill => skill.Level)
-                    .NotEmpty()
+                    .Cascade(CascadeMode.Stop)
+                    .NotNull()
                     .Must(value => value > 0 && value <= 10)
                     .WithMessage("Skill Level should be between 1 and 10");
             });

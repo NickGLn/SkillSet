@@ -6,6 +6,14 @@ namespace Application.People.Commands.CreatePerson
     {
         public CreatePersonCommandValidator()
         {
+            RuleFor(person => person.Name)
+                .NotEmpty()
+                .MaximumLength(100);
+
+            RuleFor(person => person.DisplayName)
+                .NotEmpty()
+                .MaximumLength(100);
+
             RuleForEach(person => person.Skills).ChildRules(s =>
             {
                 s.RuleFor(skill => skill.Name)
@@ -13,7 +21,8 @@ namespace Application.People.Commands.CreatePerson
                     .WithMessage("Skill should have a name");
 
                 s.RuleFor(skill => skill.Level)
-                    .NotEmpty()
+                    .Cascade(CascadeMode.Stop)
+                    .NotNull()
                     .Must(value => value > 0 && value <= 10)
                     .WithMessage("Skill Level should be between 1 and 10");
             });

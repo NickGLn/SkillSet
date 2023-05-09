@@ -26,5 +26,4 @@
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <InternalsVisibleTo Include="..\Application.UnitTests\Application.UnitTests.csproj" />
   </ItemGroup>
-
 </Project>

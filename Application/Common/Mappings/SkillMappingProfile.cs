@@ -10,7 +10,9 @@ namespace Application.Common.Mappings
         public SkillMappingProfile()
         {
             CreateMap<Skill, SkillDto>().ReverseMap();
-            CreateMap<UpdateSkillDto, Skill>();
+            CreateMap<UpdateSkillDto, Skill>()
+                .ForMember(d => d.PersonId, s => s.Ignore())
+                .ForMember(d => d.Person, s => s.Ignore());
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Application.Common.Mappings
         public PersonMappingProfile()
         {
             CreateMap<Person, PersonDto>().ReverseMap();
-            CreateMap<CreatePersonCommand, Person>();
+            CreateMap<CreatePersonCommand, Person>().ForMember(d => d.Id, s => s.Ignore());
             CreateMap<UpdatePersonCommand, Person>();
         }
     }
